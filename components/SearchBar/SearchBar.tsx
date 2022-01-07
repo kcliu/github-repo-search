@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { throttle } from "../../utils/throttle";
 import styles from "./SearchBar.module.css";
 
 interface IProps {
@@ -6,6 +7,7 @@ interface IProps {
   setQuery: Dispatch<SetStateAction<string>>;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
+const THROTTLE_TIMEOUT = 3000  //second
 export const SearchBar = ({ query, setQuery, onClick }: IProps) => {
   return (
     <div className={styles.container}>
@@ -16,7 +18,7 @@ export const SearchBar = ({ query, setQuery, onClick }: IProps) => {
         value={query}
         onInput={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
       />
-      <button onClick={onClick}>Search</button>
+      <button onClick={throttle(onClick, THROTTLE_TIMEOUT)}>Search</button>
     </div>
   );
 };
