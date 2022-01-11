@@ -14,3 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+button {
+  border-radius: 3px;
+  margin: 3px;
+}
