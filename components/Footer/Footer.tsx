@@ -16,7 +16,6 @@ const Footer = ({
   const totalItems = totalCount > MAX_ITEMS ? MAX_ITEMS : totalCount
   const lastPage = Math.ceil(totalItems / perPage);
   const isLastPage = page === lastPage;
-  console.log(page, lastPage)
   return (
     <footer className={styles.footer}>
       {totalCount !== 0 && !isFirstPage && (

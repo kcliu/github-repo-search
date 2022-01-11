@@ -7,10 +7,10 @@ import { SearchBar } from "../components/SearchBar/SearchBar";
 import Footer from "../components/Footer/Footer";
 import { RepoItem } from "../components/RepoItem/RepoItem";
 type Item = {
-    full_name: string
-    description: string
-    html_url: string
-}
+  full_name: string;
+  description: string;
+  html_url: string;
+};
 
 const PER_PAGE = 10;
 const FIRST_PAGE = 1;
@@ -22,6 +22,10 @@ const Home: NextPage = () => {
   const handleSearch = (page: number) => () => {
     if (!query) {
       return;
+    }
+    if (page === pageInfo.current) {
+        setPageInfo({current: FIRST_PAGE, total: 0})
+        page = FIRST_PAGE
     }
     fetch(
       `https://cors-anywhere.herokuapp.com/https://api.github.com/search/repositories?` +
@@ -36,7 +40,6 @@ const Home: NextPage = () => {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log("kc debug:", res);
         setItems(res.items);
         setPageInfo({ current: page, total: res.total_count });
       })
@@ -52,12 +55,12 @@ const Home: NextPage = () => {
         <meta name="description" content="Github Repo search" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SearchBar
+      <main className={styles.main}>
+        <SearchBar
           query={query}
           setQuery={setQuery}
           onClick={handleSearch(pageInfo.current)}
         />
-      <main className={styles.main}>
         <div>
           {items.map((item: Item, i) => {
             return (
