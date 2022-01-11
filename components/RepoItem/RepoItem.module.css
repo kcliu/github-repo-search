@@ -1,0 +1,40 @@
+.container {
+    width: 100%;
+    background: #A0A4A9;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.title {
+    color: white;
+    width: 600px;
+    padding: 2px;
+    /*ellipsis*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.descriptionWrapper {
+    position: relative;
+    padding-right: 40px;
+    height: 20px;
+}
+
+.descriptionWrapper svg {
+    position: absolute;
+    right: 2px;
+    top: -2px;
+}
+
+
+.description {
+    width: 600px;
+    margin-top: 10px;
+    padding: 2px;
+    /*ellipsis*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

@@ -5,12 +5,18 @@ import styles from "../styles/Home.module.css";
 import React, { useState } from "react";
 import { SearchBar } from "../components/SearchBar/SearchBar";
 import Footer from "../components/Footer/Footer";
+import { RepoItem } from "../components/RepoItem/RepoItem";
+type Item = {
+    full_name: string
+    description: string
+    html_url: string
+}
 
 const PER_PAGE = 10;
 const FIRST_PAGE = 1;
 const Home: NextPage = () => {
   const [query, setQuery] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Item[]>([]);
   const [pageInfo, setPageInfo] = useState({ current: FIRST_PAGE, total: 0 });
 
   const handleSearch = (page: number) => () => {
@@ -46,13 +52,24 @@ const Home: NextPage = () => {
         <meta name="description" content="Github Repo search" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <SearchBar
+      <SearchBar
           query={query}
           setQuery={setQuery}
           onClick={handleSearch(pageInfo.current)}
         />
+      <main className={styles.main}>
+        <div>
+          {items.map((item: Item, i) => {
+            return (
+              <RepoItem
+                key={i}
+                title={item.full_name}
+                description={item.description}
+                url={item.html_url}
+              />
+            );
+          })}
+        </div>
       </main>
       <Footer
         page={pageInfo.current}
