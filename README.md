@@ -12,6 +12,10 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## TEST
+```bash
+npx jest
+```
 ## NOTE
 - currently only CSR
 - for pagination, please check `components/Footer`
