@@ -31,7 +31,7 @@ const Home: NextPage = () => {
     }
     setLoading(true);
     fetch(
-      `https://cors-anywhere.herokuapp.com/https://api.github.com/search/repositories?` +
+      `https://api.github.com/search/repositories?` +
         new URLSearchParams({
           q: query,
           per_page: String(PER_PAGE),
